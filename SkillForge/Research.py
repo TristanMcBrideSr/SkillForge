@@ -1,36 +1,73 @@
-
 import os
+import threading
 from dotenv import load_dotenv
-
 from SkillsManager import ArgumentParser
 
 from openai import OpenAI
 from google import genai
 from google.genai import types
 
-argParser = ArgumentParser()
 load_dotenv()
-gptClient = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-genClient = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
-def research(instructions: str):
-    """
-    Description: "Research a topic using web search capabilities."
-    Additional Information: "This function uses web search capabilities to gather information on a given topic based on the provided instructions."
-    """
-    provider = os.getenv("PROVIDER", "openai")
-    argParser.printArgs(__name__, locals())
-    if provider == "openai":
-        return _research_openai(instructions)
-    elif provider == "google":
-        return _research_google(instructions)
-    else:
-        raise ValueError(f"Unsupported provider: {provider}")
+class Research:
+    _instance = None
+    _lock = threading.Lock()
 
-def _research_openai(instructions: str):
-    return gptClient.responses.create(model="gpt-4.1-mini", tools=[{ "type": "web_search_preview" }], input=instructions).output_text
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            with cls._lock:
+                if not cls._instance:
+                    cls._instance = super(Research, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
 
-def _research_google(instructions: str):
-    return genClient.models.generate_content(model="gemini-2.0-flash", contents=[types.Content(role="user", parts=[types.Part.from_text(text=instructions)])],
-                config=types.GenerateContentConfig(tools=[types.Tool(google_search=types.GoogleSearch())], response_mime_type="text/plain")).text
+    def __init__(self):
+        if hasattr(self, 'initialized'):
+            return
+        self._initComponents()
+        self.initialized = True
 
+    def _initComponents(self):
+        self.argParser = ArgumentParser()
+        self.provider  = os.getenv("PROVIDER", "openai")
+        self.gptClient = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.genClient = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+        self.actionMap = {
+            "research": self._research
+        }
+
+    def researchSkill(self, action: str, instructions: str):
+        """
+        Description: "Research a topic using web search capabilities."
+        Additional Information: "Uses web search capabilities to gather information on a given topic based on the provided instructions."
+        """
+        self.argParser.printArgs(__name__, locals())
+        action = action.lower()
+        if action in self.actionMap:
+            return self.actionMap[action](instructions)
+        else:
+            raise ValueError(f"Unsupported action: {action}")
+
+    def _research(self, instructions: str):
+        if self.provider == "openai":
+            return self._research_openai(instructions)
+        elif self.provider == "google":
+            return self._research_google(instructions)
+        else:
+            raise ValueError(f"Unsupported provider: {self.provider}")
+
+    def _research_openai(self, instructions: str):
+        return self.gptClient.responses.create(
+            model="gpt-4.1-mini",
+            tools=[{"type": "web_search_preview"}],
+            input=instructions
+        ).output_text
+
+    def _research_google(self, instructions: str):
+        return self.genClient.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=[types.Content(role="user", parts=[types.Part.from_text(text=instructions)])],
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())],
+                response_mime_type="text/plain"
+            )
+        ).text
