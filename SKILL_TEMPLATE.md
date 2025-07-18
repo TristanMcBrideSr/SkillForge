@@ -57,6 +57,7 @@ This framework enables you to write **skills**—modular logic units for controlli
 # **How To Create Skills**
 
 ## **1. Singleton Class With Action Map**
+Preferred way to create skills, as it allows for a clean structure and easy management of actions.
 
 If you put `_openApp` and `_closeApp` in `actionMap` / `action_map`, they are callable. If not, they aren’t.
 

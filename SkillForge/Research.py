@@ -1,11 +1,17 @@
+
+import inspect
+import logging
 import os
 import threading
 from dotenv import load_dotenv
-from SkillsManager import ArgumentParser
-
 from openai import OpenAI
 from google import genai
 from google.genai import types
+from SkillsManager import SkillsManager
+
+logger = logging.getLogger(__name__)
+
+
 
 load_dotenv()
 
@@ -27,7 +33,7 @@ class Research:
         self.initialized = True
 
     def _initComponents(self):
-        self.argParser = ArgumentParser()
+        self.skillsManager = SkillsManager()
         self.provider  = os.getenv("PROVIDER", "openai")
         self.gptClient = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.genClient = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -35,17 +41,14 @@ class Research:
             "research": self._research
         }
 
-    def researchSkill(self, action: str, instructions: str):
+    def researchSkill(self, action: str, *args):
         """
         Description: "Research a topic using web search capabilities."
         Additional Information: "Uses web search capabilities to gather information on a given topic based on the provided instructions."
         """
-        self.argParser.printArgs(__name__, locals())
-        action = action.lower()
-        if action in self.actionMap:
-            return self.actionMap[action](instructions)
-        else:
-            raise ValueError(f"Unsupported action: {action}")
+        self.skillsManager.argParser.printArgs(self, locals())
+        name = inspect.currentframe().f_code.co_name
+        return self.skillsManager.executeSkill('system', name, self.actionMap, action, *args)
 
     def _research(self, instructions: str):
         if self.provider == "openai":
