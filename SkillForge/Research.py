@@ -39,15 +39,15 @@ class Research:
         }
 
     def researchSkill(self, action: str, *args):
-        """
-        Description: "Research a topic using web search capabilities."
-        Additional Information: "Uses web search capabilities to gather information on a given topic based on the provided instructions."
-        """
         self.skillsManager.argParser.printArgs(self, locals())
         name = inspect.currentframe().f_code.co_name
         return self.skillsManager.executeSkill('system', name, self.actionMap, action, *args)
 
     def _research(self, instructions: str):
+        """
+        Description: "Research a topic using web search capabilities."
+        Additional Information: "Uses web search capabilities to gather information on a given topic based on the provided instructions."
+        """
         if self.provider == "openai":
             return self._research_openai(instructions)
         elif self.provider == "google":
