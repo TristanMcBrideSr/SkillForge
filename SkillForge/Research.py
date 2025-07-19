@@ -10,9 +10,6 @@ from google.genai import types
 from SkillsManager import SkillsManager
 
 logger = logging.getLogger(__name__)
-
-
-
 load_dotenv()
 
 class Research:
