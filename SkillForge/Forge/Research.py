@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from google import genai
 from google.genai import types
-from SkillsManager import SkillsManager
+from SkillLink import SkillLink
 
 logger = logging.getLogger(__name__)
 load_dotenv()
@@ -30,7 +30,7 @@ class Research:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillsManager = SkillsManager()
+        self.skillLink = SkillLink()
         self.provider  = os.getenv("PROVIDER", "openai")
         self.gptClient = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.genClient = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -39,9 +39,9 @@ class Research:
         }
 
     def researchSkill(self, action: str, *args):
-        self.skillsManager.argParser.printArgs(self, locals())
+        self.skillLink.argParser.printArgs(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillsManager.executeSkill('system', name, self.actionMap, action, *args)
+        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
 
     def _research(self, instructions: str):
         """
