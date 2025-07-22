@@ -16,7 +16,7 @@ available to all AVA users who enable the skills sync option, after it's approve
 
 ## How SkillForge Works
 
-* **All skills live inside the [`SkillForge/`](./SkillForge) folder** (each skill is a Python file).
+* **All skills live inside the [`SkillForge/Forge/`](./SkillForge/Forge) folder** (each skill is a Python file).
 * When AVA starts, it *automatically downloads and syncs* the latest skills from this repo, if the user has enabled the sync option.
 * You never need to download skills by hand unless you want to.
 
@@ -26,7 +26,7 @@ available to all AVA users who enable the skills sync option, after it's approve
 
 1. **Fork this repo** (use the “Fork” button at the top right).
 2. **Create your skill** following the [SKILL_TEMPLATE.md](./SKILL_TEMPLATE.md).
-3. **Add your skill** (`yourSkillName.py`) inside the [`SkillForge/`](./SkillForge) directory of your fork.
+3. **Add your skill** (`yourSkillName.py`) inside the [`SkillForge/Forge/`](./SkillForge/Forge) directory of your fork.
 4. **Commit and push** your changes to your fork.
 5. **Open a Pull Request** back to this repo with a description of your skill.
 
@@ -53,7 +53,7 @@ available to all AVA users who enable the skills sync option, after it's approve
 ## Example: Submitting a New Skill
 
 1. Fork this repo.
-2. Add `myCoolSkill.py` inside `SkillForge/`.
+2. Add `myCoolSkill.py` inside `SkillForge/Forge/`.
 3. Push and open a Pull Request.
 4. Wait for approval!
 
