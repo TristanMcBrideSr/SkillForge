@@ -45,7 +45,6 @@ class Base:
     def decisionData(self):
         return self._collectData("_decision")
 
-
 # ---------- COMPONENTS ----------
 
 class Interaction(Base):
@@ -119,7 +118,6 @@ class Interaction(Base):
             "user:\nWhistle for mama.\n\nassistant:\n['whistleSkill(\"whistle-normal-for-person\", \"mama\")']"
 
         ]
-
 
 
 class SelfBased(Base):
@@ -232,7 +230,6 @@ class SelfBased(Base):
             "user:\nRestore code.py to its previous version.\n\nassistant:\n['versionSkill(\"rollback-version\", \"code.py\")']",
             "user:\nClean up old versions and keep only the latest.\n\nassistant:\n['versionSkill(\"cleanup-versions\", 5)']",
         ]
-
 
 
 class UserBased(Base):
