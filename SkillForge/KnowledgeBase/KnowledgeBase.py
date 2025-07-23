@@ -1,20 +1,18 @@
 
 import os
 from dotenv import load_dotenv
-from AvaSphere.Matrix.Cognition.Attributes.Attributes import Attributes
 
 load_dotenv()
 
-
-# Adjust stages etc as needed for your application this is just what I use in my personal project
+# ---------- BASE CLASS ----------
 class Base:
     def __init__(self):
-        self.attributes = Attributes()
+        pass
 
     def getUserName(self, user):
         users = {
-            "current":  self.attributes.getCurrentAttribute("User", "Name", os.getenv("DEFAULT_USER_NAME", "User")),
-            "previous": self.attributes.getPreviousAttribute("User", "Name", os.getenv("DEFAULT_USER_NAME", "User"))
+            "current":  "Tristan",
+            "previous": "Sybil"
         }
         return users.get(user, os.getenv("DEFAULT_USER_NAME", "User"))
 
