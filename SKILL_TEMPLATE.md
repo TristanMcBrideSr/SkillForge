@@ -76,7 +76,7 @@ import os
 import threading
 import inspect
 
-from SkillsManager import SkillsManager
+from SkillLink import SkillLink
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +109,7 @@ class Apps:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillsManager    = SkillsManager()
+        self.skillLink        = SkillLink()
         self.nameReplacements = NAME_REPLACEMENTS.copy()  # Copy to avoid modifying the original
         self.actionMap = {
             "open-app":  self._openApp,
@@ -117,9 +117,9 @@ class Apps:
         }
 
     def appSkill(self, action: str, *args):
-        self.skillsManager.argParser.printArgs(self, locals())
+        self.skillLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillsManager.executeSkill('system', name, self.actionMap, action, *args)
+        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
 
     def _normalizeAppName(self, appName: str) -> str:
         app = appName.lower()
@@ -172,7 +172,7 @@ all valid **Actions** and argument info are read out of the `ACTION_MAP`.
 import os
 import subprocess
 import inspect
-from SkillsManager import ArgumentParser
+from SkillLink import ArgumentParser
 
 NAME_REPLACEMENTS = {
     "vs code":     "code",
@@ -246,7 +246,7 @@ Private (underscore-prefixed) helpers are ignored.
 ```python
 import os
 import subprocess
-from SkillsManager import ArgumentParser
+from SkillLink import ArgumentParser
 
 NAME_REPLACEMENTS = {
     "vs code":     "code",
