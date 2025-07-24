@@ -172,7 +172,7 @@ all valid **Actions** and argument info are read out of the `ACTION_MAP`.
 import os
 import subprocess
 import inspect
-from SkillLink import ArgumentParser
+from SkillLink import SkillLink
 
 NAME_REPLACEMENTS = {
     "vs code":     "code",
@@ -220,10 +220,10 @@ ACTION_MAP = {
     "close-app": _closeApp,
 }
 
-argParser = ArgumentParser()
+skillLink = SkillLink()
 
 def appSkill(action: str, *args):
-    argParser.printArgs("appSkill", locals())
+    skillLink.calledActions("appSkill", locals())
     action = action.lower()
     actionKey = ACTION_MAP.get(action)
     if not actionKey:
@@ -246,7 +246,7 @@ Private (underscore-prefixed) helpers are ignored.
 ```python
 import os
 import subprocess
-from SkillLink import ArgumentParser
+from SkillLink import SkillLink
 
 NAME_REPLACEMENTS = {
     "vs code":     "code",
@@ -257,10 +257,10 @@ NAME_REPLACEMENTS = {
     "explorer":    "iexplore",
 }
 
-argParser = ArgumentParser()
+skillLink = SkillLink()
 
 def openApp(appName: str) -> str:
-    argParser.printArgs("openApp", locals())
+    skillLink.calledActions("openApp", locals())
     for key, value in NAME_REPLACEMENTS.items():
         if key in appName.lower():
             appName = value
@@ -272,7 +272,7 @@ def openApp(appName: str) -> str:
         return f"An error occurred while trying to open {appName}: {e}"
 
 def closeApp(appName: str) -> str:
-    argParser.printArgs("closeApp", locals())
+    skillLink.calledActions("closeApp", locals())
     for key, value in NAME_REPLACEMENTS.items():
         if key in appName.lower():
             appName = value
