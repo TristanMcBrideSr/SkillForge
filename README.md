@@ -3,21 +3,21 @@
 
 # SkillForge
 
-**The Official Skill Repository for AVA**
+**The Official Skill Repository**
 
 ---
 
 ## What is SkillForge?
 
-SkillForge is the central hub for new AVA skills. Anyone can contribute—every skill in this repo becomes instantly 
-available to all AVA users who enable the skills sync option, after it's approved.
+SkillForge is the central hub for new skills. Anyone can contribute—every skill in this repo becomes instantly 
+available to all users who enable the skills sync option, after it's approved.
 
 ---
 
 ## How SkillForge Works
 
 * **All skills live inside the [`SkillForge/Forge/`](./SkillForge/Forge) folder** (each skill is a Python file).
-* When AVA starts, it *automatically downloads and syncs* the latest skills from this repo, if the user has enabled the sync option.
+* When the program starts, it *automatically downloads and syncs* the latest skills from this repo, if the user has enabled the sync option.
 * You never need to download skills by hand unless you want to.
 
 ---
@@ -64,9 +64,6 @@ available to all AVA users who enable the skills sync option, after it's approve
 **Q: Can anyone submit a skill?**
 A: Yes! Anyone with a GitHub account can propose skills.
 
-**Q: Can I use SkillForge for my own AVA?**
-A: Yes! AVA will always sync the latest skills here if you enable the sync option.
-
 **Q: Who decides what gets merged?**
 A: Only the repo owners can approve/merge skills.
 
@@ -78,7 +75,7 @@ Open an [Issue](https://github.com/TristanMcBrideSr/SkillForge/issues) or [Pull 
 
 ---
 
-> “**Forging skills, empowering AVA.**”
+> “**Forging skills, empowering AI.**”
 
 ---
 
