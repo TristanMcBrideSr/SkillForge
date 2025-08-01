@@ -76,7 +76,7 @@ import os
 import threading
 import inspect
 
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +109,7 @@ class Apps:
         self.initialized = True
 
     def _initComponents(self):
-        self.skillLink        = SkillLink()
+        self.holoLink         = HoloLink()
         self.nameReplacements = NAME_REPLACEMENTS.copy()  # Copy to avoid modifying the original
         self.actionMap = {
             "open-app":  self._openApp,
@@ -117,9 +117,9 @@ class Apps:
         }
 
     def appSkill(self, action: str, *args):
-        self.skillLink.calledActions(self, locals())
+        self.holoLink.calledActions(self, locals())
         name = inspect.currentframe().f_code.co_name
-        return self.skillLink.executeSkill('system', name, self.actionMap, action, *args)
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
     def _normalizeAppName(self, appName: str) -> str:
         app = appName.lower()
@@ -172,7 +172,7 @@ all valid **Actions** and argument info are read out of the `ACTION_MAP`.
 import os
 import subprocess
 import inspect
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 NAME_REPLACEMENTS = {
     "vs code":     "code",
@@ -220,10 +220,10 @@ ACTION_MAP = {
     "close-app": _closeApp,
 }
 
-skillLink = SkillLink()
+holoLink = HoloLink()
 
 def appSkill(action: str, *args):
-    skillLink.calledActions("appSkill", locals())
+    holoLink.calledActions("appSkill", locals())
     action = action.lower()
     actionKey = ACTION_MAP.get(action)
     if not actionKey:
@@ -246,7 +246,7 @@ Private (underscore-prefixed) helpers are ignored.
 ```python
 import os
 import subprocess
-from SkillLink import SkillLink
+from HoloAI import HoloLink
 
 NAME_REPLACEMENTS = {
     "vs code":     "code",
@@ -257,10 +257,10 @@ NAME_REPLACEMENTS = {
     "explorer":    "iexplore",
 }
 
-skillLink = SkillLink()
+holoLink = HoloLink()
 
 def openApp(appName: str) -> str:
-    skillLink.calledActions("openApp", locals())
+    holoLink.calledActions("openApp", locals())
     for key, value in NAME_REPLACEMENTS.items():
         if key in appName.lower():
             appName = value
@@ -272,7 +272,7 @@ def openApp(appName: str) -> str:
         return f"An error occurred while trying to open {appName}: {e}"
 
 def closeApp(appName: str) -> str:
-    skillLink.calledActions("closeApp", locals())
+    holoLink.calledActions("closeApp", locals())
     for key, value in NAME_REPLACEMENTS.items():
         if key in appName.lower():
             appName = value
@@ -309,8 +309,23 @@ def _privateHelper(...):
 #### **Quick Example:**
 
 ```python
+import logging
+from HoloAI import HoloLink
+logger = logging.getLogger(__name__)
+NAME_REPLACEMENTS = {
+    "vs code":     "code",
+    "vs studio":   "devenv",
+    "vs insiders": "code - insiders",
+    "word":        "winword",
+    "powerpoint":  "powerpnt",
+    "explorer":    "iexplore",
+}
+
+
 class Apps:
     def __init__(self):
+        self.holoLink = HoloLink()
+        self.nameReplacements = NAME_REPLACEMENTS.copy()  # Copy to avoid modifying the original
         self.actionMap = {
             "open-app":  self._openApp,
             "close-app": self._closeApp
@@ -318,10 +333,9 @@ class Apps:
 
     def appSkill(self, action: str, *args):
         # SKILL: Exposed as callable
-        actionKey = self.actionMap.get(action.lower())
-        if actionKey is None:
-            return f"Invalid action"
-        return actionKey(*args)
+        self.holoLink.calledActions(self, locals())
+        name = inspect.currentframe().f_code.co_name
+        return self.holoLink.executeSkill('system', name, self.actionMap, action, *args)
 
     def _openApp(self, appName: str):
         # ACTION: Only accessible via appSkill dispatcher, not directly exposed
@@ -337,4 +351,11 @@ class Apps:
 * `"open-app"` and `"close-app"` are **Actions** that the Skill can perform.
 
 ---
+
+## Acknowledgments
+
+Project by:
+
+- Tristan McBride Sr.
+- Sybil
 
