@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from google import genai
 from google.genai import types
-from SkillLink import SkillLink
 from HoloAI import HoloLink
 logger = logging.getLogger(__name__)
 load_dotenv()
