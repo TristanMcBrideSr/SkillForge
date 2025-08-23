@@ -91,6 +91,6 @@ If you like this project, consider supporting it by starring the repository or c
 
 ---
 
-**Authors:**
+## Authors
 - Tristan McBride Sr.
 - Sybil

@@ -101,9 +101,11 @@ class Interaction(Base):
             "user:\nLet's work.\n\nassistant:\n['musicSkill(\"lets-work\")']",
 
             # Optic
-            "user:\nWhat are you looking at?\n\nassistant:\n['opticSkill(\"look-ahead\", \"what are you looking at\")']",
-            "user:\nWhats behind you?\n\nassistant:\n['opticSkill(\"look-behind\", \"whats behind you\")']",
-            "user:\nTell me what you are looking at and whats on the screen.\n\nassistant:\n['opticSkill(\"look-ahead\", \"what are you looking at\")', 'opticSkill(\"capture-screen\", \"whats on the screen\")']",
+            "user:\nWhat are you looking at?\n\nassistant:\n['opticSkill(\"capture-ahead\", \"what are you looking at\")']",
+            "user:\nWhats behind you?\n\nassistant:\n['opticSkill(\"capture-behind\", \"whats behind you\")']",
+            "user:\nWho are you looking at?\n\nassistant:\n['opticSkill(\"recognize-user-frontcam\")']",
+            "user:\nWho is behind you?\n\nassistant:\n['opticSkill(\"recognize-user-rearcam\")']",
+            "user:\nTell me what you are looking at and whats on the screen.\n\nassistant:\n['opticSkill(\"capture-ahead\", \"what are you looking at\")', 'opticSkill(\"capture-screen\", \"whats on the screen\")']",
             "user:\nCreate an image of a lion.\n\nassistant:\n['opticSkill(\"create-image\", \"create an image of a lion\")']",
 
             # Play
@@ -186,6 +188,12 @@ class SelfBased(Base):
             f"user:\nShow me all backups for code.py\n\nassistant:\n{self.getUserName('current')} asked to see all backups for code.py. I can list every version I've saved for that file.",
             f"user:\nRestore code.py to its previous version.\n\nassistant:\n{self.getUserName('current')} wants to roll back code.py to a previous version. I can select the most recent backup and restore it.",
             f"user:\nClean up old versions and keep only the latest.\n\nassistant:\n{self.getUserName('current')} asked me to clean up old versions of my files. I'll keep only the most recent backups and remove anything extra.",
+
+            # Descriptions
+            f"user:\nDescribe yourself\n\nassistant:\n{self.getUserName('current')} asked me to describe myself. I can provide a detailed description of who I am, my purpose, and my capabilities.",
+            f"user:\nDescribe what you look like.\n\nassistant:\n{self.getUserName('current')} wants to know what I look like. I can give a vivid description of my appearance from my own perspective.",
+            f"user:\nDescribe your brain\n\nassistant:\n{self.getUserName('current')} asked me to describe my brain. I can provide a detailed description of my brain, its structure, and how it functions from my own perspective.",
+            f"user:\nDescribe what your brain looks like.\n\nassistant:\n{self.getUserName('current')} wants to know what my brain looks like. I can give a vivid description of my brain's appearance from my own perspective."
         ]
 
     def _clarifying(self):
@@ -241,6 +249,13 @@ class SelfBased(Base):
             "user:\nShow me all backups for code.py\n\nassistant:\n['versionSkill(\"get-versions\", \"code.py\")']",
             "user:\nRestore code.py to its previous version.\n\nassistant:\n['versionSkill(\"rollback-version\", \"code.py\")']",
             "user:\nClean up old versions and keep only the latest.\n\nassistant:\n['versionSkill(\"cleanup-versions\", 5)']",
+
+            # Descriptions
+            "user:\nDescribe yourself\n\nassistant:\n['selfDescSkill(\"describe-self\")']",
+            "user:\nDescribe what you look like.\n\nassistant:\n['selfDescSkill(\"describe-self-appearance\")']",
+            "user:\nDescribe your brain\n\nassistant:\n['selfDescSkill(\"describe-brain\")']",
+            "user:\nDescribe what your brain looks like.\n\nassistant:\n['selfDescSkill(\"describe-brain-appearance\")']",
+
         ]
 
 
