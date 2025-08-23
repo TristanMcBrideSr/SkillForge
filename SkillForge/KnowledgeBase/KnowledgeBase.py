@@ -101,11 +101,11 @@ class Interaction(Base):
             "user:\nLet's work.\n\nassistant:\n['musicSkill(\"lets-work\")']",
 
             # Optic
-            "user:\nWhat are you looking at?\n\nassistant:\n['opticSkill(\"capture-ahead\", \"what are you looking at\")']",
-            "user:\nWhats behind you?\n\nassistant:\n['opticSkill(\"capture-behind\", \"whats behind you\")']",
-            "user:\nWho are you looking at?\n\nassistant:\n['opticSkill(\"recognize-user-frontcam\")']",
-            "user:\nWho is behind you?\n\nassistant:\n['opticSkill(\"recognize-user-rearcam\")']",
-            "user:\nTell me what you are looking at and whats on the screen.\n\nassistant:\n['opticSkill(\"capture-ahead\", \"what are you looking at\")', 'opticSkill(\"capture-screen\", \"whats on the screen\")']",
+            "user:\nWhat are you looking at?\n\nassistant:\n['opticSkill(\"capture-frontcam\", \"what are you looking at\")']",
+            "user:\nWhats behind you?\n\nassistant:\n['opticSkill(\"capture-rearcam\", \"whats behind you\")']",
+            "user:\nWho are you looking at?\n\nassistant:\n['opticSkill(\"recognize-frontcam\")']",
+            "user:\nWho is behind you?\n\nassistant:\n['opticSkill(\"recognize-rearcam\")']",
+            "user:\nTell me what you are looking at and whats on the screen.\n\nassistant:\n['opticSkill(\"capture-frontcam\", \"what are you looking at\")', 'opticSkill(\"capture-screen\", \"whats on the screen\")']",
             "user:\nCreate an image of a lion.\n\nassistant:\n['opticSkill(\"create-image\", \"create an image of a lion\")']",
 
             # Play
