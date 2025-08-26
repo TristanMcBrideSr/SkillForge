@@ -126,10 +126,10 @@ class Interaction(Base):
             "user:\nWhistle for mama.\n\nassistant:\n['whistleSkill(\"whistle-normal-for-person\", \"mama\")']",
 
             # Files
-            "user:\nTell me about this image C:\\Some\\File\\Path\\image.png\n\nassistant:\n['None']",
-            "user:\nTell me about this file C:\\Some\\File\\Path\\doc.txt\n\nassistant:\n['None']",
-            "user:\nTell me about these files C:\\Some\\File\\Path\\image.png, C:\\Some\\File\\Path\\doc.txt.\n\nassistant:\n['None']",
-            "user:\nCompare these images C:\\Some\\File\\Path\\image.png, C:\\Some\\File\\Path\\image.png.\n\nassistant:\n['None']"
+            "user:\nTell me about this image C:\\Some\\File\\Path\\image.png\n\nassistant:\n'None'",
+            "user:\nTell me about this file C:\\Some\\File\\Path\\doc.txt\n\nassistant:\n'None'",
+            "user:\nTell me about these files C:\\Some\\File\\Path\\image.png, C:\\Some\\File\\Path\\doc.txt.\n\nassistant:\n'None'",
+            "user:\nCompare these images C:\\Some\\File\\Path\\image.png, C:\\Some\\File\\Path\\image.png.\n\nassistant:\n'None'"
 
         ]
 
