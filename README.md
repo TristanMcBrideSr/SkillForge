@@ -7,6 +7,12 @@
 
 ---
 
+## Updates
+
+We will soon be deprecating the Forge and KnowledgeBase Directories in favor of ForkedSkills and FordgedKnowledge respectively.
+
+---
+
 ## What is SkillForge?
 
 SkillForge is the central hub for new skills. Anyone can contribute—every skill in this repo becomes instantly 
@@ -16,7 +22,7 @@ available to all users who enable the skills sync option, after it's approved.
 
 ## How SkillForge Works
 
-* **All skills live inside the [`SkillForge/Forge/`](./SkillForge/Forge) folder** (each skill is a Python file).
+* **All skills live inside the [`SkillForge/ForgedSkills/`](./SkillForge/ForgedSkills) folder** (each skill is a Python file).
 * When the program starts, it *automatically downloads and syncs* the latest skills from this repo, if the user has enabled the sync option.
 * You never need to download skills by hand unless you want to.
 
@@ -26,9 +32,9 @@ available to all users who enable the skills sync option, after it's approved.
 
 1. **Fork this repo** (use the “Fork” button at the top right).
 2. **Create your skill** following the [SKILL_TEMPLATE.md](./SKILL_TEMPLATE.md).
-3. **Add your skill** (`yourSkillName.py`) inside the [`SkillForge/Forge/`](./SkillForge/Forge) directory of your fork.
+3. **Add your skill** (`yourSkillName.py`) inside the [`SkillForge/ForgedSkills/`](./SkillForge/ForgedSkills) directory of your fork.
 4. **Commit and push** your changes to your fork.
-5. **Open a Pull Request** back to this repo with a description of your skill.
+5. **Open a Pull Request** back to this repo with a description of your skill, why it’s useful, how to use it (Look at the KnowledgeBase.py), and any other details.
 
 ---
 
@@ -37,7 +43,7 @@ available to all users who enable the skills sync option, after it's approved.
 * **All skill submissions are reviewed by the repo owners.**
 * Only approved, safe, and useful skills are merged into SkillForge.
 * You’ll get comments or feedback if your skill needs fixes.
-* Once merged, *all AVA users* will get your skill automatically (if they have the sync option enabled).
+* Once merged, *all users* will get your skill automatically (if they have the sync option enabled).
 
 ---
 
@@ -53,7 +59,7 @@ available to all users who enable the skills sync option, after it's approved.
 ## Example: Submitting a New Skill
 
 1. Fork this repo.
-2. Add `myCoolSkill.py` inside `SkillForge/Forge/`.
+2. Add `myCoolSkill.py` inside `SkillForge/ForgedSkills/`.
 3. Push and open a Pull Request.
 4. Wait for approval!
 
