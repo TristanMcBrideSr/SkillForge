@@ -1,4 +1,14 @@
 
+from HoloAI import HoloLink, HoloViro
+
+REQUIRES = [
+    ("dotenv",       "python-dotenv>=1.0.1"),
+    ("openai",       "openai>=1.40.0"),
+    ("google.genai", "google-genai>=0.3.0"),
+]
+
+HoloViro.ensurePackages(REQUIRES, quiet=True)
+
 import inspect
 import logging
 import os
@@ -7,7 +17,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from google import genai
 from google.genai import types
-from HoloAI import HoloLink
+
+
 logger = logging.getLogger(__name__)
 load_dotenv()
 

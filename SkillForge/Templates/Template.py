@@ -1,4 +1,19 @@
 
+from HoloAI import HoloLink, HoloViro
+
+##------------- Skip This Section If You Are Not Using Any External Packages -------------##
+
+# Only list packages that are not part of the standard library
+REQUIRES = [
+    ("dotenv",       "python-dotenv"), # "python-dotenv==1.0.1" if using a specific version
+    ("openai",       "openai>=1.40.0"), # "openai>=1.40.0" if using a specific version or higher
+    ("google.genai", "google-genai>=0.3.0"), # "google-genai>=0.3.0" if using a specific version or higher
+]
+
+HoloViro.ensurePackages(REQUIRES, quiet=True) # Ensure required packages are installed so imports work
+
+##------------- End of External Packages Section -------------##
+
 import inspect
 import logging
 import os
@@ -7,7 +22,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from google import genai
 from google.genai import types
-from HoloAI import HoloLink
+
+
 logger = logging.getLogger(__name__)
 load_dotenv()
 
