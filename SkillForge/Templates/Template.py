@@ -2,6 +2,7 @@
 from HoloAI import HoloLink, HoloViro
 
 ##------------- Skip This Section If You Are Not Using Any External Packages -------------##
+"""             PLEAE ALWAYS TRY TO USE THE MOST RECENT VERSION OF A PACKAGE             """
 
 # Only list packages that are not part of the standard library
 REQUIRES = [
