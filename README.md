@@ -30,13 +30,14 @@ available to all users who enable the skills sync option, after it's approved.
 
 ## How to Add a Skill
 
-1. **Fork this repo** (use the “Fork” button at the top right).
-2. **Create your skill** following the [SKILL_TEMPLATE.md](./SKILL_TEMPLATE.md).
-3. **For more info, also see the (`Template.py`) inside the `SkillForge/Templates/` folder.**
-4. **Add your skill** (`yourSkillName.py`) inside the [`SkillForge/ForgedSkills/`](./SkillForge/ForgedSkills) directory of your fork.
-5. **Commit and push** your changes to your fork.
-6. **Open a Pull Request** back to this repo with a description of your skill, why it’s useful, how to use it (Look at the (`ForgedKnowledge.py`) inside the `SkillForge/ForgedKnowledge/` folder for examples).
-7. **Wait for review and approval.** 
+1. **Fork this repo** (use the “Fork” button at the top right).  
+2. **Create your skill** following the [SKILL_TEMPLATE.md](./SKILL_TEMPLATE.md).  
+3. **For more info, also see the [Template.py](./SkillForge/Templates/Template.py) inside the `SkillForge/Templates/` folder.**  
+4. **Add your skill** (`yourSkillName.py`) inside the [`SkillForge/ForgedSkills/`](./SkillForge/ForgedSkills) directory of your fork.  
+5. **Commit and push** your changes to your fork.  
+6. **Open a Pull Request** back to this repo with a description of your skill, why it’s useful, and how to use it (see [ForgedKnowledge.py](./SkillForge/ForgedKnowledge/ForgedKnowledge.py) 
+     inside the `SkillForge/ForgedKnowledge/` folder for examples).  
+7. **Wait for review and approval.**  
 
 ---
 

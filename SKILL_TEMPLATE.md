@@ -70,26 +70,14 @@ It exposes only the dispatcher (like `appSkill`), but dynamically documents all 
 But you can also make a class with public methods, and they will be exposed as skills/actions (no action map required).
 
 ```python
-from HoloAI import HoloLink, HoloViro
-
-##------------- Skip This Section If You Are Not Using Any External Packages -------------##
-
-# Only list packages that are not part of the standard library
-REQUIRES = [
-    ("dotenv",       "python-dotenv"), # "python-dotenv==1.0.1" if using a specific version
-    ("openai",       "openai>=1.40.0"), # "openai>=1.40.0" if using a specific version or higher
-    ("google.genai", "google-genai>=0.3.0"), # "google-genai>=0.3.0" if using a specific version or higher
-]
-
-HoloViro.ensurePackages(REQUIRES, quiet=True) # Ensure required packages are installed so imports work
-
-##------------- End of External Packages Section -------------##
 
 import logging
 import subprocess
 import os
 import threading
 import inspect
+
+from HoloAI import HoloLink, HoloViro
 
 
 logger = logging.getLogger(__name__)
@@ -123,7 +111,15 @@ class Apps:
         self.initialized = True
 
     def _initComponents(self):
-        self.holoLink         = HoloLink()
+        self.holoLink = HoloLink()
+        ##------------- Skip This Section If You Are Not Using Any External Packages -------------##
+        self.installList = [
+            # List any external packages your skill needs here
+            # Example: "requests", "numpy", "pandas"
+        ]
+        self.holoViro = HoloViro()
+        self.holoViro.pipInstall(self.installList) # Installs to a dedicated venv if not already present
+        ##------------- End of External Packages Section -------------##
         self.nameReplacements = NAME_REPLACEMENTS.copy()  # Copy to avoid modifying the original
         self.actionMap = {
             "open-app":  self._openApp,
